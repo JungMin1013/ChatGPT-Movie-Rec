@@ -1,0 +1,303 @@
+body {
+    background-color: #0a0a0a;
+}
+
+#app {
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    margin-top: 5vh;
+    background-color: #0a0a0a;
+}
+
+/* Nav */
+
+#nav .menu-list {
+    position: absolute;
+    top: 9.6px;
+    right: 0;
+    width: 12vw;
+}
+
+.search-movie {
+    background-color: white;
+    margin: 1px;
+}
+
+.movie-recommendation {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.navbar a.button.is-primary{
+    color: #fff;
+}
+
+.navbar a.button.is-primary:hover{
+    background-color: #FFD700;
+    color: #000;
+}
+.navbar a.button.is-light:hover{
+    background-color: #FFD700;
+    color: #000;
+}
+
+
+
+/* Home */
+.hero-title {
+    font-family: "Gugi", cursive;
+    color: #fff;
+}
+
+/* Movie Card */
+.media-content > .title {
+    color: #fff;
+}
+
+.movie-card {
+    font-family: "Noto Sans KR", sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+
+    box-shadow: 0 15px 15px rgba(255, 255, 255, 0.15);
+    -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    -moz-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    -o-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+.movie-card:hover {
+    box-shadow: 0 20px 20px rgba(255, 255, 255, 0.2);
+    transform: translate(0, -10px);
+    transition-delay: 0s !important;
+}
+
+.movie-card:hover .movie-title {
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Genre Cards */
+h1.title.genre-title.is-size-4 {
+    font-family: "Gugi", cursive;
+    color: #fff;
+}
+
+.highlight {
+    display: inline;
+    background: #000000a3;
+    color: #fff;
+    padding: 0.25em;
+}
+
+article.media.notification {
+    border-radius: 10px;
+    cursor: pointer;
+
+    box-shadow: 0 10px 10px rgba(255, 255, 255, 0.1);
+    -webkit-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    -moz-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    -o-transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+    transition: all 250ms cubic-bezier(0.02, 0.01, 0.47, 1);
+}
+
+article.media.notification:hover {
+    box-shadow: 0 15px 15px rgba(255, 255, 255, 0.1);
+    transform: translate(0, -10px);
+    transition-delay: 0s !important;
+}
+
+article.media.notification:hover h1.title.genre-title.is-size-4 {
+    color: #000;
+}
+
+article.media.notification:hover .highlight {
+    display: inline;
+    background: #f5f5f582;
+    color: #000;
+    padding: 0.25em;
+}
+
+
+/* Detail */
+.movie-detail .title {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 700;
+    color: #fff;
+}
+
+.movie-description {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 300;
+    color: #fff;
+}
+
+.gradient-box {
+    border: 10px solid;
+    border-image-source: linear-gradient(179deg, rgba(109, 19, 132, 1) 18.4%, rgba(245, 135, 75, 1) 108.3%);
+    border-image-slice: 1;
+}
+
+.tags a:hover {
+    text-decoration: none;
+}
+
+/* Comments */
+.comments .content {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 300;
+    color: #fff;
+}
+
+.star-rating {
+    margin: 0;
+}
+
+/* Star rating */
+.star-rating__star {
+    display: inline-block;
+    padding: 1px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 1.3em;
+    color: #ABABAB;
+    transition: color .2s ease-out;
+    margin: 0;
+}
+
+.star-rating__checkbox {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.star-rating:hover {
+    cursor: pointer;
+}
+
+.star-rating .is-selected {
+    color: #FFD700;
+}
+
+.star-rating .is-disabled:hover {
+    cursor: default;
+}
+
+
+/* Signup */
+.signup * {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.signup .title {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    color: #000;
+    font-size: 30px;
+}
+
+.signup .label {
+    color: #000;
+    font-size: 20px;
+
+}
+
+p.help {
+    color: #fff;
+}
+
+#app > section > div > div > div > form > div:nth-child(4) > div > ul {
+    color: #fff;
+    font-size: 12px;
+}
+
+/* Login */
+.login *{
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+}
+
+/* 회원가입 제목 텍스트 색상 변경 */
+.login .title {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    color: #000;
+    font-size: 30px;
+  }
+
+  /* 입력창 위의 라벨 텍스트 색상 변경 */
+.login .label {
+    color: #000;
+    font-size: 20px;
+  }
+
+  /* 로그인 버튼 크기 조정 */
+.button.is-primary {
+    padding-left: 1rem; /* 좌우 패딩 축소 */
+    padding-right: 1rem;
+    padding-top: 0.75rem; /* 상하 패딩 축소 */
+    padding-bottom: 0.75rem;
+    background-color: #FFD700;
+    color: black;
+    font-size: 0.9rem; /* 글자 크기 축소 */
+  }
+
+  /* 호버 시 색상 변화 없도록 설정 */
+  .button.is-primary:hover {
+    background-color: #FFD700; /* 기존 배경색 유지 */
+    color: black; /* 기존 글자색 유지 */
+  }
+
+
+/* Footer */
+.footer p {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 300;
+}
+
+.genre-tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .genre-tag {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem;
+    border-radius: 30px;
+    background-color: #2b2b2b;
+    color: #FFD700;
+    border: 1px solid transparent;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .genre-tag:hover {
+    color: #2b2b2b;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+  }
+
+  .genre-tag.is-active {
+    background-color: #FFD700;
+    color: #2b2b2b;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.5);
+  }
+
+  .genre-tag.is-active:hover {
+    background-color: #FFD700;
+    color: #2b2b2b;
+    transform: scale(1.1);
+  }
+  
+ 

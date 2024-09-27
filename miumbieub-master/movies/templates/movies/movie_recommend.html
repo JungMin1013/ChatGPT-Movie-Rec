@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block app %}
+<div class="container" style="display: flex; justify-content: flex-start; align-items: center; height: 60vh; flex-direction: column; margin-top: 1rem;">
+
+    <h1 class="title" style="color: #FFD700; margin-bottom: 1rem;">ChatGPT 영화추천</h1>
+    
+    <div class="input-group mb-3" style="width: 50%;">
+        <input 
+            v-model="movieTitle" 
+            @keyup.enter="searchMovie" 
+            class="input" 
+            placeholder="영화 제목을 입력하세요." 
+            aria-label="Movie title" 
+            style="width: 100%; height: 3rem;"
+        >
+    </div>
+    
+    <div v-if="loading" style="color: #FFD700; margin-top: 1rem;">로딩 중...</div>
+
+    <div v-if="movieTitle && englishTitle" style="margin-top: 2rem; color: #ffffff; font-size: 1.5rem;">
+        [[ movieTitle ]] ([[ englishTitle ]])
+    </div>
+    
+    <div v-if="recommendations.length > 0" style="margin-top: 2rem;">
+        <ul>
+            <li v-for="movie in recommendations" :key="movie" style="color: #ffffff; font-size: 1.5rem;">
+                [[ movie ]]
+            </li>
+        </ul>
+    </div>
+    
+    <div v-if="error" style="color: #ffffff; margin-top: 2rem;">[[ error ]]</div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+new Vue({
+    el: '#app',
+    delimiters: ['[[', ']]'],
+    data: {
+        movieTitle: '',
+        englishTitle: '', 
+        recommendations: [],
+        loading: false,
+        error: null
+    },
+    methods: {
+        searchMovie() {
+            if (!this.movieTitle) {
+                alert('영화 제목을 입력하세요!');
+                return;
+            }
+
+            this.loading = true;
+            this.error = null;
+            this.recommendations = [];
+
+            axios.get(`/api/movies/?query=${encodeURIComponent(this.movieTitle)}`)
+                .then(response => {
+                    this.englishTitle = response.data.english_title;
+                    return axios.get(`/api/movie-recommend/?movie_title=${encodeURIComponent(this.englishTitle)}`);
+                })
+                .then(response => {
+                    this.recommendations = response.data.results;
+                })
+                .catch(error => {
+                    if (error.response && error.response.data.error === "TMDB 검색 결과 없는 영화입니다!") {
+                        alert(error.response.data.error);
+                    } else {
+                        this.error = error.response ? error.response.data.error : error.message;
+                    }
+                })
+                .finally(() => {
+                    this.loading = false;
+                });
+        }
+    }
+});
+</script>
+{% endblock %}

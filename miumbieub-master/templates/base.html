@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--  Favicon  -->
+    <link rel="icon" href="{% static 'image/favicon.ico' %}">
+    <!-- Bulma -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Gugi|Noto+Sans+KR:300,400,700" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js"></script>
+    <!-- My CSS files -->
+    <link rel="stylesheet" href="/static/css/app.css">
+    <!-- Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      axios.defaults.xsrfCookieName = 'csrftoken';
+      axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+    </script>
+    <title>ㅁㅂ</title>
+  </head>
+  <body>
+    {% include '_nav.html' %}
+    <div id="app">
+      {% block app %}{% endblock %}
+    </div>
+    {% include '_footer.html' %}
+    {% block script %}
+    {% endblock %}
+  </body>
+</html>

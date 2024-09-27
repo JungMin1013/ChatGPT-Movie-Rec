@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block app %}
+<section id="genre">
+  <section class="hero is-black">
+    <div class="hero-body">
+      <div class="container">
+        <div class="tags genre-tags" style="margin-bottom: 1rem;">
+          <span class="tag genre-tag" 
+                v-for="genre in genreList" 
+                :class="{ 'is-active': genre.type === selectedGenre }"
+                @click="getMovieList(genre)"
+                >
+            [[ genre.type ]]
+          </span>
+        </div>
+        <h1 class="title is-2" v-text="selectedGenre" style="font-family: 'Gugi'; color: #FFD700;"></h1>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="columns is-multiline is-variable is-5" style="padding-left: 1rem; padding-right: 1rem;">
+        <div class="column is-one-third" style="margin-bottom: 2rem;" v-for="movie in movies">
+          <a :href="getDetailUrl(movie)">
+            <div class="card genre-card" style="border-radius: 10px; transition: transform 0.2s; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+              <div class="card-image">
+                <figure class="image" style="border-radius: 10px 10px 0 0; overflow: hidden;">
+                  <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px 10px 0 0;" :src="movie.poster_url" :alt="movie.title">
+                </figure>
+              </div>
+              <div class="card-content" style="background-color: #1e1e1e; border-radius: 0 0 10px 10px; color: #fff;">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4 movie-title" style="color: #FFD700;">[[ movie.title ]]</p>
+                    <small style="color: #ccc;">[[ movie.release ]] 개봉</small>
+                    <br/>
+                    <small style="color: #ccc;">[[ movie.film_rating ]]</small> &bull;
+                    <small style="color: #ccc;"><i class="fas fa-users"></i> [[ movie.audience.toLocaleString() ]]명</small>
+                  </div>
+                </div>
+                <div class="content">
+                  <small style="margin-bottom: 0; color: #ccc;">감독 : [[ movie.director ]]</small>
+                  <br/>
+                  <small style="margin-bottom: 0; color: #ccc;">배우 :
+                    [[ [movie.actor1, movie.actor2, movie.actor3].filter(e => e !== "").join(', ') ]]
+                  </small>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+{% endblock %}
+
+{% block script %}
+<script>
+  const passedGenre = '{{ genre.type }}';
+  const genre = new Vue({
+    el: '#genre',
+    delimiters: ['[[', ']]'],
+    data: {
+      movies: [],
+      selectedGenre: passedGenre,
+      genreList: [],
+      genres: [],
+    },
+    created() {
+      axios.get("{% url 'movies:genres_list' %}")
+        .then(res => {
+          this.genres = res.data;
+          res.data.forEach(genre => this.genreList.push({id: genre.id, type: genre.type}));
+        });
+      let url = "{% url 'movies:genres_detail' genre.id %}";
+      axios.get(url)
+        .then(res => this.movies = res.data.movies);
+    },
+    methods: {
+      getDetailUrl: function (movie) {
+        const url = "{% url 'movies:movies_view' 123456 %}".replace('123456', movie.id);
+        return url
+      },
+      getMovieList: function (genre) {
+        this.selectedGenre = genre.type;
+        this.movies = this.genres[genre.id - 1].movies;
+        history.replaceState({}, '무비피티', `/genres/?type=${this.selectedGenre}`);
+      },
+    }
+  })
+</script>
+{% endblock %}
+
+

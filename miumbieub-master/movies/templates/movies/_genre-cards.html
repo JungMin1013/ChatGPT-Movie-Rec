@@ -1,0 +1,25 @@
+<section class="section genres" style="padding-right: 3rem; padding-left: 3rem;">
+  <div class="container">
+    <div class="columns is-multiline">
+      <div class="column is-one-third" v-for="genreCard in genreCards">
+        <a :href="getGenreUrl(genreCard)">
+          <article 
+            class="media notification"
+            :style='{ backgroundImage: "url(" + genreCard.url + ")", }'
+            style="background-size: cover;">
+            <div class="media-content">
+              <div class="content">
+                <h1 class="title genre-title is-size-4">
+                  <span class="highlight">[[ genreCard.type ]]</span>
+                </h1>
+                <p class="subtitle">
+                  <br/><br/><br/>
+                </p>
+              </div>
+            </div>
+          </article>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
